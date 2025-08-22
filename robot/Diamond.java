@@ -24,6 +24,8 @@ public class Diamond implements Directions{
 
 
         // starting the letter R
+        for(int i=0; i<4; i++)
+        {
         rob.putBeeper();
         rob.move();
         rob.turnLeft();
@@ -46,65 +48,8 @@ public class Diamond implements Directions{
         rob.move();
         rob.putBeeper();
         rob.turnLeft();
-        rob.move();
-        rob.turnLeft();
-        rob.move();
-        rob.putBeeper();
-        rob.move();
-        rob.turnLeft();
-        rob.turnLeft();
-        rob.turnLeft();
-        rob.move();
-        rob.putBeeper();
-        rob.move();
-        rob.turnLeft();
-        rob.move();
-        rob.putBeeper();
-        rob.move();
-        rob.turnLeft();
-        rob.turnLeft();
-        rob.turnLeft();
-        rob.move();
-        rob.putBeeper();
-        rob.turnLeft();
-        rob.move();
-        rob.turnLeft();
-        rob.move();
-        rob.putBeeper();
-        rob.move();
-        rob.turnLeft();
-        rob.turnLeft();
-        rob.turnLeft();
-        rob.move();
-        rob.putBeeper();
-        rob.move();
-        rob.turnLeft();
-        rob.move();
-        rob.putBeeper();
-        rob.move();
-        rob.turnLeft();
-        rob.turnLeft();
-        rob.turnLeft();
-        rob.move();
-        rob.putBeeper();
-        rob.turnLeft();
-        rob.move();
-        rob.turnLeft();
-        rob.move();
-        rob.putBeeper();
-        rob.move();
-        rob.turnLeft();
-        rob.turnLeft();
-        rob.turnLeft();
-        rob.move();
-        rob.putBeeper();
-        rob.move();
-        rob.turnLeft();
-        rob.move();
-        rob.putBeeper();
-        rob.move();
-
-
+        }
+        
 
 
 
