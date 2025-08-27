@@ -11,8 +11,8 @@ class Math {
 
     //We will be using System.out.println and System.out.print throughout the year. Try using both below to see what the difference is!
 
-    System.out.println("Goodmorning!");
-    System.out.print("Goodnight!");
+    System.out.print("Goodmorning!");
+    System.out.println("Goodnight!");
 
 
 
@@ -41,13 +41,13 @@ class Math {
 
     int a = 3;
     int b = 5;
-    int c = 1;
+    int c = 0;
     double d = 3.14;
     double e = 5.75;
     double f = 7.25;
     boolean g = true;
     boolean h = false;
-    boolean i = true;
+    boolean j = true;
 
 
 
@@ -59,17 +59,42 @@ class Math {
 
     //Try doing some math operations with numbers. How can we check to see if the math worked?
 
+    System.out.print("What is 5 + 3? ");
+    System.out.println(a+b);
+
+
     //Create codes that will print the following:
 
     //Odd integers from 1 to 100, inclusive of both
+  for(int i=1; i<100; i++)
+  {
+    {if (i % 2 !=0)
+    System.out.println(i);
+    }
+  }
+
+
+  
+  
+
+
 
 
 
     //All multiples of 3 from 1 to 100
+    for(int z=1; z<=100; z++)
+    {
+      if (z % 3 ==0)
+      {
+        System.out.println(z);
+      }
+    }
 
 
 
 
     //Starting at 1000, print on the same line (with a - [hypthen] between each) all of the numbers that end in 0 going down to 0
+    for (int y = 1000; y>=0; y-=10)
+    System.out.print(y+"-");
   }
 }
