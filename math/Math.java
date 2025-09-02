@@ -89,10 +89,7 @@ class Math {
         System.out.println(z);
       }
     }
-
-
-
-
+    
     //Starting at 1000, print on the same line (with a - [hypthen] between each) all of the numbers that end in 0 going down to 0
     for (int y = 1000; y>=0; y-=10)
     System.out.print(y+"-");
