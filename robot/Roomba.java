@@ -16,7 +16,8 @@ public class Roomba implements Directions {
 	}
 
 	// declared here so it is visible in all the methods!
-	private Robot roomba;
+	private Robot roomba = new Robot(7,6,East,9);
+
 
 	// You will need to add many variables!!
 
@@ -28,6 +29,7 @@ public class Roomba implements Directions {
 
 		World.readWorld(worldName);
 		World.setVisible(true);
+		World.setDelay(1);
 
 
 		/** This section will have all the logic that takes the Robot to every location
@@ -38,6 +40,92 @@ public class Roomba implements Directions {
 		// the line below causes a null pointer exception
 		// what is that and why are we getting it?
 		roomba.move();
+		roomba.move();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.move();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.move();
+		roomba.move();
+		roomba.turnLeft();
+		roomba.move();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.move();
+		roomba.pickBeeper();
+		roomba.turnLeft();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.turnLeft();
+		roomba.turnLeft();
+		roomba.turnLeft();
+		roomba.move();
+		roomba.turnLeft();
+		roomba.turnLeft();
+		roomba.turnLeft();
+		roomba.move();
+		roomba.move();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		roomba.turnLeft();
+		roomba.move();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.turnLeft();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.move();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.move();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+		roomba.pickBeeper();
+
 
 
 		int totalBeepers = 0; // Need to move this somewhere else.
