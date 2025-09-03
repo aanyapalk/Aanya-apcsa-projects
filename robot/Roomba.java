@@ -29,7 +29,7 @@ public class Roomba implements Directions {
 
 		World.readWorld(worldName);
 		World.setVisible(true);
-		World.setDelay(50);
+		World.setDelay(10);
 
 
 		/** This section will have all the logic that takes the Robot to every location
@@ -46,6 +46,78 @@ public class Roomba implements Directions {
 			roomba.pickBeeper();
 		}
 		roomba.move();
+		while (roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+		}
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		roomba.turnLeft();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		while (roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+		}
+		roomba.turnLeft();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		while (roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+		}
+		roomba.move();
+		roomba.move();
+		while (roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+		}
+		roomba.move();
+		roomba.turnLeft();
+		roomba.move();
+		roomba.move();
+		while (roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+		}
+		roomba.move();
+		roomba.turnLeft();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		while (roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+		}
+		roomba.turnLeft();
+		roomba.move();
+		while (roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+		}
+		roomba.move();
+		roomba.turnLeft();
+		roomba.move();
+		roomba.move();
+		while (roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+		}
+		roomba.move();
+
+
+
+
+
+
+
+
 
 		
 		
