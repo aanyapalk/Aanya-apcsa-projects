@@ -39,6 +39,90 @@ public class Roomba implements Directions {
 
 		// the line below causes a null pointer exception
 		// what is that and why are we getting it?
+roomba.move();
+		roomba.move();
+		while (roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+		}
+		roomba.move();
+		while (roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+		}
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		roomba.turnLeft();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		while (roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+		}
+		roomba.turnLeft();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		while (roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+		}
+		roomba.move();
+		roomba.move();
+		while (roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+		}
+		roomba.move();
+		roomba.turnLeft();
+		roomba.move();
+		roomba.move();
+		while (roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+		}
+		roomba.move();
+		roomba.turnLeft();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		while (roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+		}
+		roomba.turnLeft();
+		roomba.move();
+		while (roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+		}
+		roomba.move();
+		roomba.turnLeft();
+		roomba.move();
+		roomba.move();
+		while (roomba.nextToABeeper())
+		{
+			roomba.pickBeeper();
+		}
+		roomba.move();
+
+
+
+
+
+
+
+
+
+		
+		
+
+
 
 
 
