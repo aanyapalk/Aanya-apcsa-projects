@@ -10,13 +10,13 @@ public class Roomba implements Directions {
 		String worldName = "robot/TestRoom.wld";
 
 		Roomba cleaner = new Roomba();
-		int totalBeepers = cleaner.cleanRoom(worldName, 7, 6);
+		int totalBeepers = cleaner.cleanRoom(worldName, 25, 13);
 		System.out.println("Roomba cleaned up a total of " + totalBeepers + " beepers.");
 
 	}
 
 	// declared here so it is visible in all the methods!
-	private Robot roomba = new Robot(7,6,East,0);
+	private Robot roomba = new Robot(25,13,East,0);
 
 
 	// You will need to add many variables!!
@@ -39,88 +39,7 @@ public class Roomba implements Directions {
 
 		// the line below causes a null pointer exception
 		// what is that and why are we getting it?
-		roomba.move();
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.move();
-		roomba.move();
-		roomba.move();
-		roomba.move();
-		roomba.turnLeft();
-		roomba.move();
-		roomba.move();
-		roomba.move();
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.turnLeft();
-		roomba.move();
-		roomba.move();
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.move();
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.move();
-		roomba.turnLeft();
-		roomba.move();
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.move();
-		roomba.turnLeft();
-		roomba.move();
-		roomba.move();
-		roomba.move();
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.turnLeft();
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.move();
-		roomba.turnLeft();
-		roomba.move();
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.move();
 
-
-
-
-
-
-
-
-
-		
-		
 
 
 
