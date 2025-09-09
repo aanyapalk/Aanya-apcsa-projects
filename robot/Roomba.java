@@ -29,7 +29,7 @@ public class Roomba implements Directions {
 
 		World.readWorld(worldName);
 		World.setVisible(true);
-		World.setDelay(10);
+		World.setDelay(2);
 
 
 		/** This section will have all the logic that takes the Robot to every location
@@ -39,88 +39,67 @@ public class Roomba implements Directions {
 
 		// the line below causes a null pointer exception
 		// what is that and why are we getting it?
+		
+int largestPile = 0;
+int beepers;
+for(int i= 0; i<14; i++)
+{
+while (roomba.frontIsClear())
+{
+beepers = 0;
+while (roomba.nextToABeeper())
+{
+	roomba.pickBeeper();
+	beepers++;
+}
+if (beepers > largestPile){
+	largestPile = beepers;
+} 
+	roomba.move();
+}
+roomba.turnLeft();
 roomba.move();
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.move();
-		roomba.move();
-		roomba.move();
-		roomba.move();
-		roomba.turnLeft();
-		roomba.move();
-		roomba.move();
-		roomba.move();
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.turnLeft();
-		roomba.move();
-		roomba.move();
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.move();
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.move();
-		roomba.turnLeft();
-		roomba.move();
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.move();
-		roomba.turnLeft();
-		roomba.move();
-		roomba.move();
-		roomba.move();
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.turnLeft();
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.move();
-		roomba.turnLeft();
-		roomba.move();
-		roomba.move();
-		while (roomba.nextToABeeper())
-		{
-			roomba.pickBeeper();
-		}
-		roomba.move();
+roomba.turnLeft();
+while (roomba.frontIsClear())
+{
+beepers = 0;
+while (roomba.nextToABeeper())
+{
+	roomba.pickBeeper();
+	beepers++;
+}
+if (beepers > largestPile){
+	largestPile = beepers;
+} 
 
+	roomba.move();
+}
+roomba.turnLeft();
+roomba.turnLeft();
+roomba.turnLeft();
+roomba.move();
+roomba.turnLeft();
+roomba.turnLeft();
+roomba.turnLeft();
+while (roomba.frontIsClear())
+{
+beepers = 0;
+while (roomba.nextToABeeper())
+{
+	roomba.pickBeeper();
+	beepers++;
+}
+if (beepers > largestPile){
+	largestPile = beepers;
+} 
+	roomba.move();
+}
+{
+	System.out.print("The most amount of beepers in a pile is ");
+	System.out.println(largestPile);
+}
+}
 
-
-
-
-
-
-
-
-		
-		
 
 
 
