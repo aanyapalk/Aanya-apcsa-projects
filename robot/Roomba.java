@@ -29,7 +29,7 @@ public class Roomba implements Directions {
 
 		World.readWorld(worldName);
 		World.setVisible(true);
-		World.setDelay(2);
+		World.setDelay(0);
 
 
 		/** This section will have all the logic that takes the Robot to every location
@@ -41,7 +41,11 @@ public class Roomba implements Directions {
 		// what is that and why are we getting it?
 		
 int largestPile = 0;
+int totalPiles = 0;
 int beepers;
+int largestX = startX;
+int largestY = startY;
+int totalBeepers = 0;
 for(int i= 0; i<14; i++)
 {
 while (roomba.frontIsClear())
@@ -51,9 +55,15 @@ while (roomba.nextToABeeper())
 {
 	roomba.pickBeeper();
 	beepers++;
+	totalBeepers++;
+}
+if (beepers > 0){
+	totalPiles++;
 }
 if (beepers > largestPile){
 	largestPile = beepers;
+	largestX = roomba.street();
+	largestY = roomba.avenue();
 } 
 	roomba.move();
 }
@@ -67,11 +77,16 @@ while (roomba.nextToABeeper())
 {
 	roomba.pickBeeper();
 	beepers++;
+	totalBeepers++;
+}
+if (beepers > 0){
+	totalPiles++;
 }
 if (beepers > largestPile){
 	largestPile = beepers;
+	largestX = roomba.street();
+	largestY = roomba.avenue();
 } 
-
 	roomba.move();
 }
 roomba.turnLeft();
@@ -88,26 +103,27 @@ while (roomba.nextToABeeper())
 {
 	roomba.pickBeeper();
 	beepers++;
+	totalBeepers++;
+}
+if (beepers >0){
+	totalPiles++;
 }
 if (beepers > largestPile){
 	largestPile = beepers;
+	largestX = roomba.street();
+	largestY = roomba.avenue();
 } 
 	roomba.move();
 }
 {
 	System.out.print("The most amount of beepers in a pile is ");
 	System.out.println(largestPile);
+	System.out.print("The total amount of piles is ");
+	System.out.println(totalPiles);
+	System.out.print("The coordinate of the largest pile is ");
+	System.out.println(largestX  + "," + largestY );
 }
 }
-
-
-
-
-
-
-
-		int totalBeepers = 0; // Need to move this somewhere else.
-        // This method should return the total number of beepers cleaned up.
 		return totalBeepers;
 	}
 }
