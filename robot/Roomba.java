@@ -6,10 +6,10 @@ public class Roomba implements Directions {
 
     public static void main(String[] args) {
         // LEAVE THIS ALONE!!!!!!
-        String worldName = "robot/TestRoom.wld";
+        String worldName = "robot/finalTest.wld";
         World.setDelay(0);
         Roomba cleaner = new Roomba();
-        int totalBeepers = cleaner.cleanRoom(worldName, 25, 11);
+        int totalBeepers = cleaner.cleanRoom(worldName, 26, 101);
         //System.out.println("Roomba cleaned up a total of " + totalBeepers + " beepers.");  
         //System.out.println("Roomba cleaned up a total of " + totalBeepers + " piles.");
     }
