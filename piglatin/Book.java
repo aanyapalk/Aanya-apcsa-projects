@@ -74,4 +74,9 @@ public class Book {
         // TODO: Add code here to write the contents of the book to a file.
         // Must write to file using provided name.
     }
+
+    public int getNumPages() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getNumPages'");
+    }
 }

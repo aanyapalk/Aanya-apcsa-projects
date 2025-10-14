@@ -4,10 +4,11 @@ public class PigLatinTranslator {
     public static Book translate(Book input) {
         Book translatedBook = new Book();
 
-        // TODO: Add code here to populate translatedBook with a translation of the
-        // input book.
-        // Curent do-nothing code will return an empty book.
-        // Your code will need to call translate(String input) many times.
+        for (int i = 0; i < input.getNumPages(); i++) {
+            String pageText = input.getPage(i);
+            String translatedText = translate(pageText);
+            translatedBook.addPage(translatedText);
+        }
 
         return translatedBook;
     }
@@ -17,11 +18,23 @@ public class PigLatinTranslator {
 
         String result = "";
 
-        // TODO: translate a string input, store in result.
-        // The input to this function could be any English string.
-        // It may be made up of many words.
-        // This method must call translateWord once for each word in the string.
-        result = translateWord(input);
+        // ✅ FIX: define the words array before using it
+        String[] words = input.split(" ");
+
+        StringBuilder translatedSentence = new StringBuilder();
+
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            String translatedWord = translateWord(word);
+
+            if (i > 0) {
+                translatedSentence.append(" ");
+            }
+
+            translatedSentence.append(translatedWord);
+        }
+
+        result = translatedSentence.toString();
 
         return result;
     }
@@ -31,16 +44,24 @@ public class PigLatinTranslator {
 
         String result = "";
 
-        // TODO: Replace this code to correctly translate a single word.
-        // Start here first!
-        // This is the first place to work.
-        result = input; // delete this line
+        if (input.length() == 0) {
+            return result; // empty word
+        }
+
+        // Convert to lowercase for checking vowels (optional)
+        char firstChar = input.charAt(0);
+        char lowerFirst = Character.toLowerCase(firstChar);
+
+        // Check if it starts with a vowel
+        if (lowerFirst == 'a' || lowerFirst == 'e' || lowerFirst == 'i' ||
+            lowerFirst == 'o' || lowerFirst == 'u') {
+            result = input + "way";
+        } else {
+            result = input.substring(1) + firstChar + "ay";
+        }
 
         return result;
     }
 
-    // Add additonal private methods here.
-    // For example, I had one like this:
-    // private static String capitalizeFirstLetter(String input)
-
+    // You can add helper methods here if needed
 }
