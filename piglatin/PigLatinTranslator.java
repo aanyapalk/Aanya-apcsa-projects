@@ -1,6 +1,11 @@
 package piglatin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PigLatinTranslator {
+
+    // Translate an entire Book
     public static Book translate(Book input) {
         Book translatedBook = new Book();
 
@@ -13,55 +18,94 @@ public class PigLatinTranslator {
         return translatedBook;
     }
 
+    // Translate a full string (sentence)
     public static String translate(String input) {
-        System.out.println("  -> translate('" + input + "')");
+        if (input.trim().isEmpty()) return "";
 
-        String result = "";
-
-        // ✅ FIX: define the words array before using it
         String[] words = input.split(" ");
-
         StringBuilder translatedSentence = new StringBuilder();
 
         for (int i = 0; i < words.length; i++) {
             String word = words[i];
-            String translatedWord = translateWord(word);
 
-            if (i > 0) {
-                translatedSentence.append(" ");
+            // Handle hyphenated words
+            String[] parts = word.split("(?<=-)|(?=-)"); // keep hyphens as separate parts
+            for (int j = 0; j < parts.length; j++) {
+                if (!parts[j].equals("-")) {
+                    parts[j] = translateWord(parts[j]);
+                }
             }
+            String translatedWord = String.join("", parts);
 
+            if (i > 0) translatedSentence.append(" ");
             translatedSentence.append(translatedWord);
         }
 
-        result = translatedSentence.toString();
-
-        return result;
+        return translatedSentence.toString();
     }
 
-    private static String translateWord(String input) {
-        System.out.println("  -> translateWord('" + input + "')");
+    // Translate a single word into Pig Latin
+    private static String translateWord(String word) {
+        if (word.length() == 0) return word;
 
-        String result = "";
-
-        if (input.length() == 0) {
-            return result; // empty word
+        // Separate punctuation at the end
+        String punctuation = "";
+        while (word.length() > 0 && !Character.isLetter(word.charAt(word.length() - 1))) {
+            punctuation = word.charAt(word.length() - 1) + punctuation;
+            word = word.substring(0, word.length() - 1);
         }
 
-        // Convert to lowercase for checking vowels (optional)
-        char firstChar = input.charAt(0);
-        char lowerFirst = Character.toLowerCase(firstChar);
+        if (word.length() == 0) return punctuation;
 
-        // Check if it starts with a vowel
-        if (lowerFirst == 'a' || lowerFirst == 'e' || lowerFirst == 'i' ||
-            lowerFirst == 'o' || lowerFirst == 'u') {
-            result = input + "way";
+        // Check if first letter is uppercase
+        boolean isCapitalized = Character.isUpperCase(word.charAt(0));
+
+        // Find first vowel position
+        int firstVowel = -1;
+        for (int i = 0; i < word.length(); i++) {
+            char c = Character.toLowerCase(word.charAt(i));
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+                firstVowel = i;
+                break;
+            }
+        }
+
+        String translated;
+        if (firstVowel == 0) {
+            translated = word + "ay"; // starts with vowel
+        } else if (firstVowel > 0) {
+            translated = word.substring(firstVowel) + word.substring(0, firstVowel) + "ay"; // consonant cluster
         } else {
-            result = input.substring(1) + firstChar + "ay";
+            translated = word + "ay"; // no vowels
         }
 
-        return result;
+        // Capitalize only first letter, lowercase the rest
+        if (isCapitalized) {
+            translated = Character.toUpperCase(translated.charAt(0)) +
+                         translated.substring(1).toLowerCase();
+        }
+
+        // Add punctuation back
+        translated += punctuation;
+
+        return translated;
     }
 
-    // You can add helper methods here if needed
+}
+
+// Simple Book stub for compilation and testing
+class Book {
+    private List<String> pages = new ArrayList<>();
+
+    public int getNumPages() {
+        return pages.size();
+    }
+
+    public String getPage(int i) {
+        return pages.get(i);
+    }
+
+    public void addPage(String pageText) {
+        pages.add(pageText);
+    }
 }
