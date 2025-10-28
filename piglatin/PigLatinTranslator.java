@@ -1,123 +1,91 @@
 package piglatin;
 
+import java.io.IOException;
+import java.util.Scanner;
+
 public class PigLatinTranslator {
 
-    // Translate a whole Book (kept for grader compatibility)
-    public static Book translate(Book input) {
-        Book translatedBook = new Book();
+    public static Book translate(Book originalBook) {
+        Book pigLatinBook = new Book();
 
-        int numPages;
-        try {
-            // some graders use getNumPages()
-            numPages = (int) input.getClass().getMethod("getNumPages").invoke(input);
-        } catch (Exception e) {
-            throw new RuntimeException("Book class missing getNumPages()", e);
+        // Translate the title
+        String translatedTitle = translate(originalBook.getTitle());
+        pigLatinBook.setTitle(translatedTitle);
+
+        // Translate each line
+        for (int i = 0; i < originalBook.getLineCount(); i++) {
+            String translatedLine = translate(originalBook.getLine(i));
+            pigLatinBook.appendLine(translatedLine);
         }
 
-        for (int i = 0; i < numPages; i++) {
-            String pageText = null;
-            try {
-                // try both common method names
-                if (hasMethod(input, "getPage", int.class)) {
-                    pageText = (String) input.getClass().getMethod("getPage", int.class).invoke(input, i);
-                } else if (hasMethod(input, "getPageText", int.class)) {
-                    pageText = (String) input.getClass().getMethod("getPageText", int.class).invoke(input, i);
-                }
-            } catch (Exception e) {
-                throw new RuntimeException("Cannot read page " + i, e);
-            }
-
-            String translatedText = translate(pageText);
-
-            try {
-                if (hasMethod(translatedBook, "addPage", String.class)) {
-                    translatedBook.getClass().getMethod("addPage", String.class).invoke(translatedBook, translatedText);
-                } else if (hasMethod(translatedBook, "add", String.class)) {
-                    translatedBook.getClass().getMethod("add", String.class).invoke(translatedBook, translatedText);
-                }
-            } catch (Exception e) {
-                throw new RuntimeException("Cannot add page " + i, e);
-            }
-        }
-
-        return translatedBook;
+        return pigLatinBook;
     }
 
-    // Helper to check if a method exists
-    private static boolean hasMethod(Object obj, String name, Class<?>... params) {
-        try {
-            obj.getClass().getMethod(name, params);
-            return true;
-        } catch (NoSuchMethodException e) {
-            return false;
-        }
-    }
-
-    // Translate a full sentence
-    public static String translate(String input) {
-        if (input == null || input.trim().isEmpty()) return "";
-
-        String[] words = input.split(" ");
+    public static String translate(String sentence) {
         StringBuilder translatedSentence = new StringBuilder();
+        Scanner wordScanner = new Scanner(sentence);
 
-        for (int i = 0; i < words.length; i++) {
-            String word = words[i];
-
-            // Handle hyphenated words
-            String[] parts = word.split("(?<=-)|(?=-)");
-            for (int j = 0; j < parts.length; j++) {
-                if (!parts[j].equals("-")) {
-                    parts[j] = translateWord(parts[j]);
-                }
+        while (wordScanner.hasNext()) {
+            translatedSentence.append(translateWord(wordScanner.next()));
+            if (wordScanner.hasNext()) {
+                translatedSentence.append(" ");
             }
-            String translatedWord = String.join("", parts);
-
-            if (i > 0) translatedSentence.append(" ");
-            translatedSentence.append(translatedWord);
         }
 
+        wordScanner.close();
         return translatedSentence.toString();
     }
 
-    // Translate a single word into Pig Latin
     private static String translateWord(String word) {
-        if (word.length() == 0) return word;
+        String vowels = "aeiouyAEIOUY";
+        String digits = "0123456789";
+        String punctuationMarks = ".,;:?!]}[{*#_$%@!&^()~`/|<>-+=";
 
-        // Separate punctuation
+        if (word.length() == 0 || word.charAt(0) == ' ') {
+            return "";
+        }
+
+        // Ignore numbers or punctuation-only words
+        if (digits.indexOf(word.charAt(0)) >= 0 || punctuationMarks.indexOf(word.charAt(0)) >= 0) {
+            return word;
+        }
+
+        // Separate trailing punctuation
         String punctuation = "";
-        while (word.length() > 0 && !Character.isLetter(word.charAt(word.length() - 1))) {
-            punctuation = word.charAt(word.length() - 1) + punctuation;
+        if (punctuationMarks.indexOf(word.substring(word.length() - 1)) >= 0) {
+            punctuation = word.substring(word.length() - 1);
             word = word.substring(0, word.length() - 1);
         }
 
-        if (word.length() == 0) return punctuation;
-
-        boolean isFirstUpper = Character.isUpperCase(word.charAt(0));
-        String lowerWord = word.toLowerCase();
-
-        int firstVowel = -1;
-        for (int i = 0; i < lowerWord.length(); i++) {
-            char c = lowerWord.charAt(i);
-            if ("aeiou".indexOf(c) >= 0) {
-                firstVowel = i;
-                break;
+        // Count vowels
+        int vowelCount = 0;
+        for (int i = 0; i < word.length(); i++) {
+            if (vowels.indexOf(word.charAt(i)) >= 0) {
+                vowelCount++;
             }
         }
 
-        String translated;
-        if (firstVowel == 0) {
-            translated = lowerWord + "ay";
-        } else if (firstVowel > 0) {
-            translated = lowerWord.substring(firstVowel) + lowerWord.substring(0, firstVowel) + "ay";
+        if (vowelCount == 0) {
+            return word + "ay" + punctuation;
+        }
+
+        boolean startsWithCapital = Character.isUpperCase(word.charAt(0));
+        String lowerCasedWord = Character.toLowerCase(word.charAt(0)) + word.substring(1);
+
+        String pigLatinWord;
+        if (vowels.indexOf(lowerCasedWord.charAt(0)) != -1 || word.length() == 1) {
+            pigLatinWord = word + "ay";
         } else {
-            translated = lowerWord + "ay";
+            while (vowels.indexOf(lowerCasedWord.charAt(0)) == -1) {
+                lowerCasedWord = lowerCasedWord.substring(1) + lowerCasedWord.charAt(0);
+            }
+            pigLatinWord = lowerCasedWord + "ay";
         }
 
-        if (isFirstUpper) {
-            translated = Character.toUpperCase(translated.charAt(0)) + translated.substring(1);
+        if (startsWithCapital) {
+            pigLatinWord = Character.toUpperCase(pigLatinWord.charAt(0)) + pigLatinWord.substring(1);
         }
 
-        translated += punctuation;
-        return translated;
+        return pigLatinWord + punctuation;
     }
 }

@@ -3,7 +3,7 @@ package piglatin;
 public class App {
     public static void main(String[] args)
     {
-        /*  Introduction and TODO List
+        /*  Introduction and 
 
         This project is setup with four main classes:
             1. App - the main application
@@ -29,16 +29,21 @@ public class App {
         if (score > 4)
         {
             // Starter book
-            Book input = new Book();
+            Book Testinput = new Book();
 
             // Start with a "test" book based on a string.
             // Get this to work, and all the tests to pass first.
-            input.readFromString("TestBook", "Dog\nCat\nMouse");
+            //input.readFromString("TestBook", "Dog\nCat\nMouse");
 
-           
-            Book output = PigLatinTranslator.translate(input);
-            output.printlines(0,2);
-            output.writeToFile("test.txt");
+            // Example reading from a URL
+            Testinput.readFromUrl("Romeo and Juliette", "https://www.gutenberg.org/cache/epub/1342/pg1342.txt");
+
+            Testinput.printlines(0,Testinput.getLineCount());
+            Book output = new Book();
+            output = PigLatinTranslator.translate(Testinput);
+            //System.out.println(output);
+            output.printlines(0,output.getLineCount());
+            output.writeToFile("Pride.txt");
         }
     }
 }

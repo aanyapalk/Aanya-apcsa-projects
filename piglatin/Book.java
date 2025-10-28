@@ -50,18 +50,26 @@ public class Book {
         // load a book from an input string.
         this.title = title;
 
-        // TODO: use Scanner to populate the book
+        Scanner sc = new Scanner(string);
+        while(sc.hasNextLine()){
+            text.add(sc.nextLine());
+        }
+        sc.close();
         // use: text.add(line) to add a line to the book.
     }
 
-    public void readFromUrl(String title, String url) {
+    public void readFromUrl(String titleIn, String url) {
         // load a book from a URL.
         // https://docs.oracle.com/javase/tutorial/networking/urls/readingURL.html
-        this.title = title;
+        this.title = titleIn;
 
         try {
-            URL bookUrl = URI.create(url).toURL();
-            // TODO: use Scanner to populate the book
+           URL bookUrl = URI.create(url).toURL();
+            Scanner sc = new Scanner(bookUrl.openStream());
+            while(sc.hasNextLine()){
+                this.text.add(sc.nextLine());
+            }
+            sc.close();
             // Scanner can open a file on a URL like this:
             // Scanner(bookUrl.openStream())
             // use: text.add(line) to add a line to the book.
@@ -71,12 +79,20 @@ public class Book {
     }
 
     void writeToFile(String name) {
-        // TODO: Add code here to write the contents of the book to a file.
         // Must write to file using provided name.
-    }
+        try (BufferedWriter br = new BufferedWriter(new FileWriter(name))) {
+          //  BufferedWriter br = new BufferedWriter(new FileWriter(name));
+            // File myFile = new File(name);
+                for(int c = 0; c < this.getLineCount(); c ++){
+                    br.write(this.getLine(c));
+                    br.newLine();
 
-    public int getNumPages() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNumPages'");
+                }
+            br.close();
+        } 
+        catch (IOException e) {
+            e.printStackTrace(); 
+        }
     }
 }
+
