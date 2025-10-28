@@ -36,14 +36,14 @@ public class App {
             //input.readFromString("TestBook", "Dog\nCat\nMouse");
 
             // Example reading from a URL
-            Testinput.readFromUrl("Romeo and Juliette", "https://www.gutenberg.org/cache/epub/1342/pg1342.txt");
+            Testinput.readFromUrl("Moby Dick", "https://www.gutenberg.org/cache/epub/2701/pg2701.txt");
 
             Testinput.printlines(0,Testinput.getLineCount());
             Book output = new Book();
             output = PigLatinTranslator.translate(Testinput);
             //System.out.println(output);
             output.printlines(0,output.getLineCount());
-            output.writeToFile("Pride.txt");
+            output.writeToFile("MobyDick.txt");
         }
     }
 }
