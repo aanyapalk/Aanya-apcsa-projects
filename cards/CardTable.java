@@ -26,11 +26,8 @@ public class CardTable {
         Boolean play = true;
         while (play)
         {
-            // Get input
             System.out.println("Enter a command: (q to quit)");
             input = keyboard.nextLine();
-
-            // Check for exit condition
             if (input.length() > 0)
             {
                 String command = input.substring(0, 1);
@@ -40,11 +37,9 @@ public class CardTable {
                     continue;
                 }
                 else if (command.equals("r")) {
-                    // Reset
                     game = new Game(deck);
                 }
                 else {
-                    // Play on!
                     boolean result = game.takeTurn(command);
                     if (result == false)
                     {
