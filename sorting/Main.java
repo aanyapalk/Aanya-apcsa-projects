@@ -1,5 +1,7 @@
 package sorting;
 
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args)
     {
@@ -19,12 +21,21 @@ public class Main {
         // TestSuite.run(testInput, 10000);
         TestSuite.run(testInput, 1);
     }
+        /**
+     * Generates a random integer array of the specified length.
+     * Values range from 0 to 99.
+     *
+     * @param length Length of the array
+     * @return Random integer array
+     */
+    public static int[] randomArray(int length) {
+        Random rand = new Random(); // replaced placeholder**
+        int[] a = new int[length]; // replaced hard-coded array**
 
-    public static int[] randomArray(int length)
-    {
-        // TODO: make this return an actual random array of the provided length.
-        int[] a = {10, 5, 3, 2};
+        for (int i = 0; i < length; i++) { // replaced placeholder**
+            a[i] = rand.nextInt(100); // random numbers 0-99**
+        }
+
         return a;
     }
-
 }
