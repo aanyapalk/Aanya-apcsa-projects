@@ -17,6 +17,5 @@ public class SelectionSort implements Sorter {
             int temp = input[minIndex];
             input[minIndex] = input[i];
             input[i] = temp;
-        System.out.println("Selection Sort!!!");
     }
 }}

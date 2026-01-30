@@ -14,7 +14,6 @@ public class InsertionSort implements Sorter {
             }
 
             input[j + 1] = key;
-        System.out.println("Insertion Sort!!!");
         }
     }
 }
