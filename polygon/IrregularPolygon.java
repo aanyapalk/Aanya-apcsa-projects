@@ -13,18 +13,50 @@ public class IrregularPolygon {
     // public methods
     public void add(Point2D.Double aPoint)
     {
-        // TODO: Add a point to the IrregularPolygon.
+          myPolygon.add(aPoint);
     }
 
     public double perimeter() {
-        // TODO: Calculate the perimeter.
-        return 3.14;
-    }
+        double perimeter = 0.0;
 
+        if (myPolygon.size() < 2)
+            return 0.0;
+
+        for (int i = 0; i < myPolygon.size(); i++) {
+            Point2D.Double p1 = myPolygon.get(i);
+            Point2D.Double p2;
+
+            if (i == myPolygon.size() - 1)
+                p2 = myPolygon.get(0); 
+            else
+                p2 = myPolygon.get(i + 1);
+
+            perimeter += p1.distance(p2);
+            }
+        return perimeter;
+    }
     public double area() {
         // TODO: Calculate the area.
         Double area = 0.0;
-        return area;
+
+        if (myPolygon.size() < 3)
+            return 0.0;
+        double sum = 0.0;
+
+    for (int i = 0; i < myPolygon.size(); i++) {
+        Point2D.Double p1 = myPolygon.get(i);
+        Point2D.Double p2;
+
+        if (i == myPolygon.size() - 1) {
+            p2 = myPolygon.get(0);
+        } else {
+            p2 = myPolygon.get(i + 1);
+        }
+
+        sum += (p1.x * p2.y) - (p2.x * p1.y);
+    }
+
+    return Math.abs(sum) / 2.0;
     }
 
     public void draw()
