@@ -37,10 +37,13 @@ public class IntegerStack {
     // Insert an element at the top of the stack
     public void push(int value)
     {
-        if ((depth >= 0) && (depth < stack.length))
+       if (depth < stack.length)
+    {
+        if (depth == 0 || value < stack[depth - 1])
         {
             stack[depth++] = value;
         }
+    }
     }
 
     // Debug function for printing
